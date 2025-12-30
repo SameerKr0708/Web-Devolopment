@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Array Iteration</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f4f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 25px 35px;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        button {
+            padding: 10px 18px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        ul {
+            margin-top: 15px;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        li {
+            background: #e9ecef;
+            margin: 6px 0;
+            padding: 8px;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Array Iteration using for...of</h2>
+        <button onclick="showItems()">Show Items</button>
+        <ul id="output"></ul>
+    </div>
+
+    <script>
+        function showItems() {
+            let items = ["HTML", "CSS", "JavaScript", "C", "Python", "Java"];
+            let list = document.getElementById("output");
+            list.innerHTML = "";
+
+            for (let item of items) {
+                let li = document.createElement("li");
+                li.textContent = item;
+                list.appendChild(li);
+            }
+        }
+    </script>
+
+</body>
+</html>

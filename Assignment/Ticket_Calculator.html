@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<title>Ticket Calculator</title>
+<style>
+body{font-family:system-ui,Arial,sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;background:#f5f7fb}
+.card{background:#fff;padding:18px 20px;border-radius:10px;box-shadow:0 6px 18px rgba(20,30,60,.06);text-align:center;min-width:300px}
+input[type=number]{width:100px;padding:8px;border-radius:6px;border:1px solid #d6dbe6}
+button{padding:8px 12px;border-radius:6px;border:0;background:#fd7e14;color:#fff;cursor:pointer;margin-left:8px}
+#res{margin-top:12px;font-weight:700;font-size:18px}
+.price{color:#198754;font-size:20px}
+small{display:block;margin-top:8px;color:#666;font-size:12px}
+</style>
+</head>
+<body>
+<div class="card">
+  <h2>Ticket Price Calculator</h2>
+  <input id="age" type="number" placeholder="Age" min="0" max="120">
+  <button id="btn">Calculate</button>
+  <div id="res" aria-live="polite"></div>
+  <small>< 12: ₹5 | < 18: ₹10 | < 60: ₹20 | 60+: ₹15</small>
+</div>
+<script>
+function calcPrice(){
+  const a=document.getElementById('age').value;
+  const out=document.getElementById('res');
+  if(a===''){out.innerHTML='Enter age';return}
+  const age=Number(a);
+  if(!Number.isFinite(age)||age<0||age>120){out.innerHTML='Enter valid age';return}
+  let price;
+  if(age<12) price=5;
+  else if(age<18) price=10;
+  else if(age<60) price=20;
+  else price=15;
+  out.innerHTML=`Age ${age}: <span class="price">₹${price}</span>`;
+}
+document.getElementById('btn').addEventListener('click',calcPrice);
+document.getElementById('age').addEventListener('keydown',e=>{if(e.key==='Enter')calcPrice()});
+</script>
+</body>
+</html>

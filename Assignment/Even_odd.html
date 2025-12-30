@@ -1,0 +1,29 @@
+<!Doctype html>
+<html>
+<head>
+  <title>Even or Odd</title>
+  <style>
+    body{font-family:system-ui,Arial,sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;background:#f6f8fb}
+    .card{background:#fff;padding:18px 20px;border-radius:10px;box-shadow:0 6px 18px rgba(20,30,60,.06);text-align:center}
+    input{padding:8px 10px;font-size:15px;border:1px solid #d6dbe6;border-radius:8px;width:140px}
+    button{margin-left:8px;padding:8px 12px;border-radius:8px;border:0;background:#2b7cff;color:#fff;cursor:pointer}
+    #o{margin-top:12px;font-weight:600;color:#111}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <input id=num type=number placeholder="Number">
+    <button id=b>Check</button>
+    <div id=o></div>
+  </div>
+  <script>
+  b.onclick=()=>{
+    const s=num.value;
+    if(s===''){o.textContent='Enter a number';return}
+    const n=Number(s);
+    o.textContent=(n%2===0)?'This Number is Even':'This Number is Odd';
+  }
+  num.addEventListener('keydown',e=>{if(e.key==='Enter')b.click()})
+  </script>
+</body>
+</html>

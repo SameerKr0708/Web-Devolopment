@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<title>Grade Calculator</title>
+<style>
+body{font-family:system-ui,Arial,sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;background:#f5f7fb}
+.card{background:#fff;padding:18px 20px;border-radius:10px;box-shadow:0 6px 18px rgba(20,30,60,.06);text-align:center;min-width:300px}
+input[type=number]{width:100px;padding:8px;border-radius:6px;border:1px solid #d6dbe6}
+button{padding:8px 12px;border-radius:6px;border:0;background:#198754;color:#fff;cursor:pointer;margin-left:8px}
+#res{margin-top:12px;font-weight:700}
+small{display:block;margin-top:6px;color:#666}
+</style>
+</head>
+<body>
+<div class="card">
+  <h2>Grade Calculator</h2>
+  <input id="score" type="number" placeholder="0-100" min="0" max="100">
+  <button id="calc">Calculate</button>
+  <div id="res" aria-live="polite"></div>
+    <small>Enter a marks to get the corresponding grade.</small>
+</div>
+<script>
+function calc(){
+  const s=document.getElementById('score').value;
+  const out=document.getElementById('res');
+  if(s===''){out.textContent='Enter a score';return}
+  const n=Number(s);
+  if(!Number.isFinite(n)||n<0||n>100){out.textContent='Enter 0–100';return}
+  let grade;
+  if(n>=90) grade='A';
+  else if(n>=80) grade='B';
+  else if(n>=70) grade='C';
+  else if(n>=60) grade='D';
+  else grade='F';
+  out.textContent=`Score ${n} → Grade ${grade}`;
+}
+document.getElementById('calc').addEventListener('click',calc);
+document.getElementById('score').addEventListener('keydown',e=>{if(e.key==='Enter')calc()});
+</script>
+</body>
+</html>

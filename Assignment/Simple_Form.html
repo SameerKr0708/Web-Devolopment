@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple HTML Form with CSS</title>
+
+    <style>
+        /* Page Styling */
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f2f6ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Form Container */
+        form {
+            background-color: #ffffff;
+            padding: 25px 30px;
+            width: 350px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #0b5ed7;
+            margin-bottom: 20px;
+        }
+
+        /* Labels */
+        label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Text input & select */
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        /* Radio & Checkbox spacing */
+        input[type="radio"],
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        /* Submit Button */
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #0b5ed7;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #084298;
+        }
+
+        /* Popup Styles */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            z-index: 1000;
+        }
+
+        .popup.show {
+            display: block;
+        }
+
+        .popup h2 {
+            color: #28a745;
+            margin: 0 0 10px 0;
+        }
+
+        .popup p {
+            color: #666;
+            margin: 0;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 999;
+        }
+
+        .overlay.show {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form id="userForm" action="/submit" method="post">
+
+        <h1>User Information Form</h1>
+
+        <!-- Text Input -->
+        <label for="name">Full Name:</label><br>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required><br><br>
+
+        <!-- Radio Buttons -->
+        <label>Gender:</label><br>
+        <input type="radio" id="male" name="gender" value="male" required>
+        <label for="male">Male</label><br>
+
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">Female</label><br>
+
+        <input type="radio" id="other" name="gender" value="other">
+        <label for="other">Other</label><br><br>
+
+        <!-- Checkboxes -->
+        <label>Interests:</label><br>
+        <input type="checkbox" id="coding" name="interests" value="coding">
+        <label for="coding">Coding</label><br>
+
+        <input type="checkbox" id="music" name="interests" value="music">
+        <label for="music">Music</label><br>
+
+        <input type="checkbox" id="sports" name="interests" value="sports">
+        <label for="sports">Sports</label><br><br>
+
+        <!-- Select Menu -->
+        <label for="country">Country:</label><br>
+        <select id="country" name="country" required>
+            <option value="">--Select your country--</option>
+            <option value="us">United States</option>
+            <option value="uk">United Kingdom</option>
+            <option value="ca">Canada</option>
+            <option value="in">India</option>
+        </select><br><br>
+
+        <!-- Submit Button -->
+        <input type="submit" value="Submit">
+
+    </form>
+
+    <!-- Popup -->
+    <div class="overlay" id="overlay"></div>
+    <div class="popup" id="popup">
+        <h2>✓ Success!</h2>
+        <p>Your information has been submitted successfully!</p>
+    </div>
+
+    <script>
+        document.getElementById('userForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show popup and overlay
+            document.getElementById('overlay').classList.add('show');
+            document.getElementById('popup').classList.add('show');
+            
+            // Auto-hide after 3 seconds
+            setTimeout(function() {
+                document.getElementById('overlay').classList.remove('show');
+                document.getElementById('popup').classList.remove('show');
+                document.getElementById('userForm').reset();
+            }, 3000);
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<title>Time-Based Greeting</title>
+<style>
+body{font-family:system-ui,Arial,sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%)}
+.card{background:#fff;padding:40px 30px;border-radius:15px;box-shadow:0 10px 40px rgba(0,0,0,.2);text-align:center;min-width:350px}
+h1{margin:0;color:#333;font-size:32px}
+.greeting{font-size:28px;font-weight:700;margin:20px 0;color:#667eea}
+.time{font-size:18px;color:#666;margin:15px 0}
+.emoji{font-size:60px;margin:15px 0}
+p{color:#888;font-size:14px;margin-top:20px}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="emoji" id="emoji"></div>
+  <div class="greeting" id="greeting"></div>
+  <div class="time" id="time"></div>
+  <p id="desc"></p>
+</div>
+<script>
+function showGreeting(){
+  const now=new Date();
+  const hour=now.getHours();
+  let greeting,emoji,desc;
+  
+  if(hour<12){
+    greeting='Good Morning! ☀️';
+    emoji='🌅';
+    desc='Rise and shine! Have a wonderful day ahead.';
+  }else if(hour<18){
+    greeting='Good Afternoon! 🌤️';
+    emoji='☀️';
+    desc='Hope you\'re having a great day!';
+  }else{
+    greeting='Good Evening! 🌙';
+    emoji='🌆';
+    desc='Time to wind down and relax.';
+  }
+  
+  const timeStr=now.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  const dateStr=now.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
+  
+  document.getElementById('greeting').textContent=greeting;
+  document.getElementById('emoji').textContent=emoji;
+  document.getElementById('time').textContent=`${timeStr} • ${dateStr}`;
+  document.getElementById('desc').textContent=desc;
+}
+
+showGreeting();
+setInterval(showGreeting,1000);
+</script>
+</body>
+</html>

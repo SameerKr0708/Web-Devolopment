@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<title>BMI Calculator</title>
+<style>
+body{font-family:system-ui,Arial,sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;background:#f5f7fb}
+.card{background:#fff;padding:25px;border-radius:10px;box-shadow:0 6px 18px rgba(20,30,60,.06);text-align:center;min-width:350px}
+.row{display:flex;gap:10px;margin:12px 0}
+input[type=number]{flex:1;padding:8px;border-radius:6px;border:1px solid #d6dbe6}
+button{padding:8px 16px;border-radius:6px;border:0;background:#6c63ff;color:#fff;cursor:pointer;width:100%;font-weight:600}
+#res{margin-top:16px;padding:12px;border-radius:8px;display:none}
+#res.show{display:block}
+.bmi-value{font-size:24px;font-weight:700;margin:8px 0}
+.bmi-category{font-size:16px;font-weight:600}
+.underweight{background:#e3f2fd;color:#1976d2}
+.normal{background:#e8f5e9;color:#388e3c}
+.overweight{background:#fff3e0;color:#f57c00}
+.obese{background:#ffebee;color:#d32f2f}
+small{display:block;margin-top:10px;color:#666;font-size:12px}
+</style>
+</head>
+<body>
+<div class="card">
+  <h2>BMI Calculator</h2>
+  <div class="row">
+    <input id="weight" type="number" placeholder="Weight (kg)" min="0" step="0.1">
+  </div>
+  <div class="row">
+    <input id="height" type="number" placeholder="Height (cm)" min="0" step="0.1">
+  </div>
+  <button id="btn">Calculate BMI</button>
+  <div id="res" aria-live="polite"></div>
+  <small>Formula: Weight ÷ (Height in cm ÷ 100)²</small>
+</div>
+<script>
+function calcBMI(){
+  const w=document.getElementById('weight').value;
+  const h=document.getElementById('height').value;
+  const res=document.getElementById('res');
+  
+  if(w===''||h===''){res.classList.remove('show');return}
+  const weight=Number(w);
+  const height=Number(h)/100;
+  if(!Number.isFinite(weight)||!Number.isFinite(height)||weight<=0||height<=0){res.classList.remove('show');return}
+  
+  const bmi=weight/(height*height);
+  let category,cls;
+  
+  if(bmi<18.5){category='Underweight';cls='underweight'}
+  else if(bmi<25){category='Normal weight';cls='normal'}
+  else if(bmi<30){category='Overweight';cls='overweight'}
+  else{category='Obese';cls='obese'}
+  
+  res.innerHTML=`<div class="bmi-value">${bmi.toFixed(1)}</div><div class="bmi-category">${category}</div>`;
+  res.className='show '+cls;
+}
+
+document.getElementById('btn').addEventListener('click',calcBMI);
+document.getElementById('weight').addEventListener('keydown',e=>{if(e.key==='Enter')calcBMI()});
+document.getElementById('height').addEventListener('keydown',e=>{if(e.key==='Enter')calcBMI()});
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<title>Print Numbers</title>
+<style>
+body{font-family:system-ui,Arial,sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;background:#f5f7fb}
+.card{background:#fff;padding:25px;border-radius:10px;box-shadow:0 6px 18px rgba(20,30,60,.06);text-align:center;min-width:350px}
+button{padding:10px 20px;border-radius:6px;border:0;background:#6c63ff;color:#fff;cursor:pointer;font-weight:600;font-size:15px}
+#res{margin-top:20px;padding:15px;background:#f0f2f7;border-radius:8px;text-align:left}
+.numbers{display:flex;flex-wrap:wrap;gap:8px}
+.num{background:#6c63ff;color:#fff;padding:8px 12px;border-radius:6px;font-weight:600}
+small{display:block;margin-top:12px;color:#666;font-size:12px}
+</style>
+</head>
+<body>
+<div class="card">
+  <h2>Print Numbers 1-10</h2>
+  <button id="btn">Generate Numbers</button>
+  <div id="res" style="display:none;"></div>
+  
+</div>
+<script>
+function printNumbers(){
+  const res=document.getElementById('res');
+  let html='<div class="numbers">';
+  
+  for(let i=1;i<=10;i++){
+    html+=`<div class="num">${i}</div>`;
+  }
+  
+  html+='</div>';
+  res.innerHTML=html;
+  res.style.display='block';
+}
+
+document.getElementById('btn').addEventListener('click',printNumbers);
+</script>
+</body>
+</html>
