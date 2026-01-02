@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create & Manipulate Elements</title>
+
+    <style>
+        ul {
+            width: 300px;
+            padding: 10px;
+            border: 2px solid #333;
+        }
+        li {
+            padding: 6px;
+            margin: 4px 0;
+            background-color: #e3e3e3;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>DOM Create, Append, Remove & Modify</h2>
+
+    <ul id="list">
+        <li>Item 1</li>
+    </ul>
+
+    <button onclick="addItem()">Append Item</button>
+    <button onclick="removeItem()">Remove Last Item</button>
+    <button onclick="modifyItem()">Modify First Item</button>
+
+    <script>
+        const list = document.getElementById("list");
+
+        // Create and append a new child element
+        function addItem() {
+            const li = document.createElement("li"); // create element
+            li.textContent = "New Item";
+            list.appendChild(li); // append child
+        }
+
+        // Remove last child element
+        function removeItem() {
+            if (list.lastElementChild) {
+                list.removeChild(list.lastElementChild);
+            }
+        }
+
+        // Modify first child element
+        function modifyItem() {
+            if (list.firstElementChild) {
+                list.firstElementChild.textContent = "Item Modified!";
+                list.firstElementChild.style.backgroundColor = "lightgreen";
+            }
+        }
+    </script>
+
+</body>
+</html>
